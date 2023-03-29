@@ -118,34 +118,7 @@ class TuSimple_Unifier:
             lane_points = self.points_string2ndarary(lane_points)
             x_lane = lane_points[:, 0]
             y_lane = lane_points[:, 1]
-            y_min_lane = np.min(y_lane)
-            y_max_lane = np.max(y_lane)
-            h_samples_isNeedInterpolated = (self.h_samples >= y_min_lane) & (self.h_samples <= y_max_lane)
-            h_samples_needInterpolated = self.h_samples[h_samples_isNeedInterpolated]
-            # x_interpolated = np.interp(h_samples_needInterpolated, y_lane, x_lane) # 这个方法对于非可逆函数会得到全部有问题的点
 
-            ## Interpolation by sub-lines, avoiding the problem of non-invertable curve interpolation
-            x_interpted_ls = []
-            for h in h_samples_needInterpolated:
-                above_y = y_lane[y_lane <= h]
-                below_y = y_lane[y_lane >= h]
-                below_y_start_position = np.sum(y_lane < h)
-                close_above_y_position = np.argmin(np.abs(above_y - h))
-                close_below_y_position = np.argmin(np.abs(below_y - h)) + below_y_start_position
-                close_above_y = y_lane[close_above_y_position]
-                close_above_x = x_lane[close_above_y_position]
-                close_below_y = y_lane[close_below_y_position]
-                close_below_x = x_lane[close_below_y_position]
-                x_interpted = np.interp(h, [close_above_y, close_below_y], [close_above_x, close_below_x])
-                x_interpted = float(x_interpted)
-                x_interpted_ls.append(x_interpted)
-
-            ## compensate for other h_samples
-            head_nums = h_samples_isNeedInterpolated.tolist().index(True)
-            tail_nums = self.h_samples.__len__() - head_nums - np.sum(h_samples_needInterpolated)
-            x_interpted_ls = [-2] * head_nums + x_interpted_ls + [-2] * tail_nums
-
-            lines_tuSimple.append(x_interpted_ls)
         return lines_tuSimple
 
     def points_string2ndarary(self, points_string):
@@ -207,7 +180,17 @@ if __name__ == "__main__":
     x = np.arange(-10, 10, 0.01)
     y = x ** 2 - 15 * np.sin(x)
     y1 = np.arange(20, 80)
-    x1 = interpolate_as_sublines(y,x,y1)
+    x1 = interpolate_as_sublines(y, x, y1)
     plt.plot(x, y)
     plt.plot(x1, y1)
+    plt.show()
+
+### Testing
+if __name__ == "__main__":
+    y = np.arange(-10, 10, 0.2)
+    x = y ** 2
+    y1 = np.arange(-8, 8, 0.9)
+    x1 = interpolate_as_sublines(x, y, y1)
+    plt.plot(x, y)
+    plt.plot(x1, y1, '-*')
     plt.show()
