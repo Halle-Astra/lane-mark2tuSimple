@@ -4,6 +4,17 @@ The doc of TuSimple format: https://github.com/TuSimple/tusimple-benchmark/tree/
 
 The page of the above link also shows the usage of evalation tool. You can learn the metric caculation by learning it.
 
+
+## Usage 
+
+You can run this script easily by
+
+`python xml2tuSimple.py -i <folder_name>`
+
+or
+
+`python xml2tuSimple.py -i <file_path>`
+
 ## Appendix
 
 This section is the notes when I tackled bugs.
