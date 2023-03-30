@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<annotation>
+  <folder>ZDSbelt_deviation202302317</folder>
+  <filename id="1200">factory_in_1_1.jpg</filename>
+  <size>
+    <width>1920</width>
+    <height>1080</height>
+    <depth></depth>
+  </size>
+  <object>
+    <name>edge</name>
+    <polyline>
+      <points>785.45,1.69;747.79,156.26;675.11,414.64;495.40,1077.70</points>
+    </polyline>
+  </object>
+  <object>
+    <name>edge</name>
+    <polyline>
+      <points>3.29,228.79;161.60,105.70;291.38,3.77</points>
+    </polyline>
+  </object>
+  <object>
+    <name>edge</name>
+    <polyline>
+      <points>1052.89,1.19;1080.57,98.34;1093.96,147.24;1093.50,150.56;1094.62,155.65;1099.71,159.88;1102.82,175.61;1123.00,248.81;1155.63,375.56;1154.72,382.74;1164.31,406.17;1171.84,441.94;1176.95,468.13;1359.02,1080.00</points>
+    </polyline>
+  </object>
+</annotation>

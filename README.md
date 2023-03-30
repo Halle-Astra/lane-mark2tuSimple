@@ -11,9 +11,15 @@ You can run this script easily by
 
 `python xml2tuSimple.py -i <folder_name>`
 
+like 
+
+`python xml2tuSimple.py -i example_folder`
+
+
 or
 
 `python xml2tuSimple.py -i <file_path>`
+
 
 ## Appendix
 
